@@ -43,7 +43,7 @@ const WorkHome = () => {
    ])
 
    const uploadImage=(e)=>{
-       const file= e.target.file[0]
+       const file= e.target.files[0]
        const saveFile = URL.createObjectURL(file)
        setImg(saveFile)
    }
@@ -87,7 +87,7 @@ const WorkHome = () => {
             <div className="container_new">
                 <img className="container_newImage" src={img}/>
                 <div className="container_newInput">
-                    <input className="container_newInputFile" type="file"/>
+                    <input className="container_newInputFile" type="file" onChange={uploadImage}/>
                     <input placeholder="Enter your Name" value={name}
                      onChange={(e)=>{
                          setName(e.target.value)

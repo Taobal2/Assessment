@@ -55,7 +55,7 @@ const GameScreen = () => {
                 <Result>Result</Result>
                 <DisplayResult>
                     {
-                        picker===computer?"You won":"You lost"
+                        picker===computer? <span>You won</span> : <span>You lost</span>
                     }
                 </DisplayResult>
             </Wrapper>
