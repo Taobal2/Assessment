@@ -1,152 +1,223 @@
-import React, {useState, useEffect} from 'react'
-import Styled from "styled-components"
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import zero from "./Assets/zero.jpg";
+import one from "./Assets/one.jpg";
+import two from "./Assets/two.jpg";
+import three from "./Assets/three.jpg";
+import four from "./Assets/four.jpg";
+import five from "./Assets/five.jpg";
+import victory from "./Assets/victory.jpg";
 
 const GameScreen = () => {
+  const [picker, setPicker] = useState(0);
+  const [computer, setComputer] = useState(0);
 
-    const [picker, setPicker]=useState(0)
-    const [computer, setComputer]=useState(0)
+  const computerValue = (max, min) => {
+    return setComputer(Math.floor(Math.random() * (max - min + 1) + min));
+  };
 
-    const guessValue=(max, min)=>{
-        return setComputer(Math.floor(Math.random()*(max-min)+min))
-        console.log(computer)
-    }
+  useEffect(() => {
+    setInterval(() => {
+      computerValue(5, 1);
+    }, 5000);
+  }, []);
 
-    return (
-        <Container>
-            <Wrapper>
-                <Section>My Game</Section>
-                <RowSection>
-                    <RowBox>
-                        <RowBox1>{}</RowBox1>
-                        <DisplayButton>
-                        <Button onClick={()=>{
-                            setPicker(1)
-                            console.log(picker)
-                        }}
-                        >1</Button>
-                        <Button onClick={()=>{
-                            setPicker(2)
-                            console.log(picker)
-                        }}>2</Button>
-                        <Button onClick={()=>{
-                            setPicker(3)
-                            console.log(picker)
-                        }}>3</Button>
-                        <Button onClick={()=>{
-                            setPicker(4)
-                            console.log(picker)
-                        }}>4</Button>
-                        <Button onClick={()=>{
-                            setPicker(5)
-                            console.log(picker)
-                        }}>5</Button>
-                        </DisplayButton>
-                        <RowBoxName>Me</RowBoxName>
-                    </RowBox>
-                    <RowBox>
-                        <RowBox1>{}</RowBox1>
-                        <ComputerButton onClick={()=>{
-                            guessValue(1, 5)
+  return (
+    <Container>
+      <Wrapper>
+        <Title>Taobals Game</Title>
+        <Row>
+          <RowItems>
+            <RowBox>
+              {picker === 0 ? (
+                <Image src={zero} />
+              ) : picker === 1 ? (
+                <Image src={one} />
+              ) : picker === 2 ? (
+                <Image src={two} />
+              ) : picker === 3 ? (
+                <Image src={three} />
+              ) : picker === 4 ? (
+                <Image src={four} />
+              ) : picker === 5 ? (
+                <Image src={five} />
+              ) : null}
+            </RowBox>
+            <Number>
+              <DisplayBox
+                onClick={() => {
+                  setPicker(1);
+                  console.log(picker);
+                }}
+              >
+                1
+              </DisplayBox>
+              <DisplayBox
+                onClick={() => {
+                  setPicker(2);
+                  console.log(picker);
+                }}
+              >
+                2
+              </DisplayBox>
+              <DisplayBox
+                onClick={() => {
+                  setPicker(3);
+                  console.log(picker);
+                }}
+              >
+                3
+              </DisplayBox>
+              <DisplayBox
+                onClick={() => {
+                  setPicker(4);
+                  console.log(picker);
+                }}
+              >
+                4
+              </DisplayBox>
+              <DisplayBox
+                onClick={() => {
+                  setPicker(5);
+                  console.log(picker);
+                }}
+              >
+                5
+              </DisplayBox>
+            </Number>
+            <RowBox1>Me</RowBox1>
+          </RowItems>
+          <RowItems>
+            <RowBox>{computer}</RowBox>
+            <Button
+              onClick={() => {
+                computerValue(5, 1);
+              }}
+            >
+              Press
+            </Button>
+            <RowBox1>Computer</RowBox1>
+          </RowItems>
+        </Row>
+        <Result>
+          <DisplayResult>Result</DisplayResult>
+          <DisplayResult>
+            {picker === computer ? (
+              <Image src={victory} />
+            ) : (
+              <span>You lost</span>
+            )}
+          </DisplayResult>
+        </Result>
+      </Wrapper>
+    </Container>
+  );
+};
 
-                        }}>Click</ComputerButton>
-                        <RowBoxName>Computer</RowBoxName>
-                    </RowBox>
-                </RowSection>
-                <Result>Result</Result>
-                <DisplayResult>
-                    {
-                        picker===computer? <span>You won</span> : <span>You lost</span>
-                    }
-                </DisplayResult>
-            </Wrapper>
-        </Container>
-    )
-}
+export default GameScreen;
 
-export default GameScreen
-
-
-const Container = Styled.div`
-width:100%;
-min-height:100vh;
-height:100%;
-background-color:blue;
-padding-top:20px;
-
+const Image = styled.img`
+  width: 50px;
+  height: 50px;
 `;
 
-
-const Result = Styled.div`
-font-size:50px;
-padding-top:30px;
-color:white;
+const DisplayResult = styled.div`
+  width: 120px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
 `;
-const RowBox = Styled.div`
-display:flex;
-flex-direction:column;
-align-items:center;
-`;
-const RowSection = Styled.div`
-display:flex;
-width:80%;
-justify-content:space-around;
-`;
-const Wrapper = Styled.div`
-display:flex;
-flex-direction:column;
-align-items:center;
-`;
-const RowBox1 = Styled.div`
-width:300px;
-height:200px;
-border-radius:10px;
-background-color:white;
-color:black;
-margin-bottom:10px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:30px;
-`;
-const DisplayButton = Styled.div`
-display:flex;
-`;
-const RowBoxName = Styled.div`
-padding-top:20px;
-color:white;
-font-size:20px;
-
-`;
-
-const DisplayResult = Styled.div`
-font-size:30px;
-color:white;
-`;
-const Button = Styled.div`
-width:40px;
-height:40px;
-border-radius:50%;
-margin-right:10px;
-background-color:yellow;
-display:flex;
-align-items:center;
-justify-content:center;
-color:green;
-`;
-const ComputerButton = Styled.div`
-width:50px;
+const Button = styled.div`
+width:50px; 
 height:50px;
 border-radius:50%;
-margin-right:10px;
-background-color:yellow;
+background-color:teal;
+margin-top 10px;
 display:flex;
-align-items:center;
 justify-content:center;
-color:green;
+align-items:center;
+transition:all 500ms;
+transform:scale(1);
+
+
+:hover{
+    cursor:pointer;
+    transform:scale(1.2);
+}
 `;
-const Section = Styled.div`
-font-size:70px;
-font-weight:bold;
-margin-bottom:40px;
-color:white;
+
+const Number = styled.div`
+  display: flex;
+`;
+const DisplayBox = styled.div`
+  margin: 20px 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: teal;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  transition: all 500ms;
+  transform: scale(1);
+
+  :hover {
+    cursor: pointer;
+    transform: scale(1.2);
+  }
+`;
+const RowBox1 = styled.div`
+  font-size: 30px;
+  margin-top: 10px;
+`;
+const RowBox = styled.div`
+  width: 300px;
+  height: 200px;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  font-weight: bold;
+`;
+const RowItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+`;
+const Result = styled.div`
+  font-size: 30px;
+  margin-top: 30px;
+`;
+const Row = styled.div`
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+`;
+const Title = styled.div`
+  font-size: 70px;
+  font-weight: bold;
+`;
+
+const Container = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  background-color: blue;
+  color: white;
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 80px;
 `;

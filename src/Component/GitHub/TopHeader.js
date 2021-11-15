@@ -1,30 +1,30 @@
-import React from 'react'
-import styled from "styled-components"
-import Top from "./Top"
-import TopBottom from './TopBottom'
+import React from "react";
+import styled from "styled-components";
+import Top from "./Top";
+import TopBottom from "./TopBottom";
 
 const TopHeader = () => {
-    return (
-       <Container>
-           <Wrapper>
-               <Top/> 
-               <TopBottom/>
-           </Wrapper>
-       </Container>
-    )
-}
+  return (
+    <Container>
+      <Wrapper>
+        <Top />
+        <TopBottom />
+      </Wrapper>
+    </Container>
+  );
+};
 
-export default TopHeader
+export default TopHeader;
 
 const Container = styled.div`
-width:100%;
-height:80vh;
-// background-color:red;
-background-image: url("Gb.svg");
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-color:white;
+  width: 100%;
+  height: 80vh;
+  // background-color:red;
+  background-image: url("Gb.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  padding-top: 80px;
 `;
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div``;

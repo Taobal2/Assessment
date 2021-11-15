@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "image": "burger.png",
+        "name": "Mighty Burger",
+        "price": "8$",
+        "about": "Served with fires and drinks"
+    },
+    {
+        "id": "2",
+        "image": "salad.png",
+        "name": "Chickpae's salad",
+        "price": "4$",
+        "about": "Served with fires and drinks"
+    },
+    {
+        "id": "3",
+        "image": "chickpae.png",
+        "name": "Chickpae's wrap",
+        "price":  "3$",
+        "about": "Served with fires and drinks"
+    }
+    
+
+        
+]
